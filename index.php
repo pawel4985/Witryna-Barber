@@ -21,6 +21,15 @@
             <span class="ham"></span>
             <span class="ham"></span>
         </div>
+        <div class="login">
+            <div class="log_item"><img src="img/user.png"></div>
+            <form class="logowanie" action="" method="post">
+                <label><img src="img/user_log.png"><input type="text" name="log" placeholder="Login"></label>
+                <label><img src="img/key_log.png"><input type="password" name="pass" placeholder="Hasło"></label>
+                <input type="submit" value="ZALOGUJ">
+                <a href="register.php">REJESTRACJA</a>
+            </form>
+        </div>
         <div class="content">
             <h1>BarberCentral</h1>
             <p>Zadbamy<span class="yellow"> kompleksowo </span>o twój<br> wizerunek, włosy i zarost</p>
@@ -28,6 +37,58 @@
         </div>
         <a href="" class="visit">Umów się na wizytę</a>
     </header>
+    <main>
+        <div class="services">
+            <h2>Nasze usługi</h2>
+            <div class="service">
+                <div>
+                    <div>
+                        <img src="img/beard.png" alt="broda">
+                        <p class="price">60zł</p>
+                    </div>
+                    <p class="yellow">Strzyżenie brody/trymowanie</p>
+                    <p>(grooming brody / pielęgnacja)</p>
+                </div>
+                <div>
+                    <div>
+                        <img src="img/hair.png" alt="włosy">
+                        <p class="price">90zł</p>
+                    </div>
+                    <p class="yellow">Strzyżenie włosów</p>
+                    <p>(strzyżenie / pielęgnacja / modelowanie)</p>
+                </div>
+                <div>
+                    <div>
+                        <img src="img/bald.png" alt="włosy">
+                        <p class="price">90zł</p>
+                    </div>
+                    <p class="yellow">Strzyżenie na łyso + shaver</p>
+                    <p>(strzyżenie / shaver / pielęgnacja)</p>
+                </div>
+            </div>
+        </div>
+        <div class="team">
+            <h2>Nasz zespół</h2>
+            <p>Nasi barberzy są <span class="yellow">zawodowcami</span> z wysokim<br> doświadczeniem, oferują usługi na najwyższym poziomie.</p>
+            <div class="teammates">
+                <div>
+                    <img src="img/team1.jpg" alt="Jack Tosan">
+                    <p class="title">Jack Tosan</p>
+                    <p>Specjalista od włosów</p>
+                </div>
+                <div>
+                    <img src="img/team2.jpg" alt="Jhonatan Smith">
+                    <p class="title">Jonatan Smith</p>
+                    <p>Stylista od włosów</p>
+                </div>
+                <div>
+                    <img src="img/team3.jpg" alt="Michael Brown">
+                    <p class="title">Michael Brown</p>
+                    <p>Specjalista od trymowania</p>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

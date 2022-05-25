@@ -4,3 +4,8 @@ document.querySelector("header .hamburger").addEventListener("click",()=>{
         document.getElementsByClassName('ham')[i].classList.toggle("active")
     }
 })
+//wysunięcie logowania
+document.querySelector("header .login .log_item").addEventListener("click",()=>{
+    document.querySelector("header .login form.logowanie").classList.toggle("show")
+    document.querySelector("header .login .log_item").classList.toggle("show")
+})
