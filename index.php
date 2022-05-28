@@ -89,6 +89,28 @@
             </div>
         </div>
     </main>
+    <footer>
+        <h3>KONTAKT</h3>
+        <div class="contact">
+            <div>
+                <p>Zadzwoń lub napisz</p>
+                <p>+48 568 542 231</p>
+                <p>barbercentral@gmail.com</p>
+            </div>
+            <div>
+                <p>Nasz adres</p>
+                <p>ul. Polna 4, 03-287</p>
+                <p>Warszawa</p>
+            </div>
+            <div>
+                <p>Godziny pracy</p>
+                <p>pon-pt: 8:00-18:00</p>
+                <p>sob: 8:00-15:00</p>
+                <p>niedz: nieczynne</p>
+            </div>
+        </div>
+        <p class="copy">&copy; 2022 BarberCentral</p>
+    </footer>
 </body>
 
 </html>

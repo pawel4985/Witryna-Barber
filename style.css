@@ -271,3 +271,44 @@ main .team .teammates div p.title {
     display: block;
     margin: 15px 0 3px 0;
 }
+
+footer {
+    background-color: black;
+    font-family: roboto;
+}
+
+footer h3 {
+    padding-top: 10px;
+    color: #F1C40F;
+    font-size: 35px;
+    text-align: center;
+}
+
+footer .contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+footer .contact div {
+    width: 20%;
+}
+
+footer .contact div p:first-of-type {
+    margin-bottom: 6px;
+    color: #F1C40F;
+    font-size: 25px;
+    text-align: center;
+}
+
+footer .contact div p {
+    text-align: center;
+    color: white;
+}
+
+footer p.copy {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
