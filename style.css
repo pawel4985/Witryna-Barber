@@ -286,11 +286,12 @@ footer h3 {
 
 footer .contact {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
 }
 
 footer .contact div {
+    padding-top: 10px;
     width: 20%;
 }
 
@@ -307,8 +308,9 @@ footer .contact div p {
 }
 
 footer p.copy {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
     font-size: 30px;
     color: white;
+    padding-bottom: 10px;
 }
