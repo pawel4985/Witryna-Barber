@@ -160,7 +160,6 @@ header .login form.logowanie label {
 }
 
 header .login form.logowanie label img {
-    margin-right: 10px;
     width: 15px;
 }
 
@@ -172,7 +171,14 @@ header .login form.logowanie input {
     border: 0;
 }
 
+header .login form.logowanie input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
 header .login form.logowanie input[type="submit"] {
+    cursor: pointer;
     margin: 20px 0 5px 0;
     padding: 10px 20px;
     background-color: #F1C40F;
@@ -224,7 +230,6 @@ main .services .service div {
 
 main .services .service div div img {
     display: block;
-    margin-right: 10px;
     height: 60px;
 }
 
@@ -313,4 +318,12 @@ footer p.copy {
     font-size: 30px;
     color: white;
     padding-bottom: 10px;
+}
+
+.wrong {
+    color: red;
+}
+
+.positive {
+    color: green;
 }

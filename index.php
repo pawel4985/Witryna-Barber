@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -10,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
-    <title>Barber central</title>
+    <title>Barbercentral</title>
 </head>
 
 <body>
@@ -24,6 +27,49 @@
         <div class="login">
             <div class="log_item"><img src="img/user.png"></div>
             <form class="logowanie" action="" method="post">
+                <?php
+                if ($_POST) {
+                    $log = $_POST['log'];
+                    $pass =  $_POST["pass"];
+                    @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+                    $check = mysqli_query($db, "SELECT * FROM accounts WHERE nazwa='$log';");
+                    if (!empty($log)) {
+                        if (mysqli_num_rows($check) > 0) {
+                            if (!empty($pass)) {
+                                if (password_verify($pass, mysqli_fetch_assoc($check)['haslo'])) {
+                                    echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
+                                    document.querySelector('header .login .log_item').classList.add('show')</script>");
+                                    echo ("<p class='positive'>Zalogowano!</p>");
+                                    echo ("<script>setTimeout(()=>{
+                                        document.querySelector('header .login form.logowanie').classList.remove('show')
+                                        document.querySelector('header .login .log_item').classList.remove('show')
+                                    },1500)</script>");
+                                    $_SESSION["log"] = true;
+                                    if (mysqli_fetch_assoc($check)['typ'] = "pracownik") {
+                                        $_SESSION["admin"] = true;
+                                    }
+                                } else {
+                                    echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
+                                    document.querySelector('header .login .log_item').classList.add('show')</script>");
+                                    echo ("<p class='wrong'>Złe hasło!</p>");
+                                }
+                            } else {
+                                echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
+                                    document.querySelector('header .login .log_item').classList.add('show')</script>");
+                                echo ("<p class='wrong'>Podaj hasło!</p>");
+                            }
+                        } else {
+                            echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
+                                    document.querySelector('header .login .log_item').classList.add('show')</script>");
+                            echo ("<p class='wrong'>Nie istnieje konto o podanej nazwie!</p>");
+                        }
+                    } else {
+                        echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
+                                    document.querySelector('header .login .log_item').classList.add('show')</script>");
+                        echo ("<p class='wrong'>Podaj login!</p>");
+                    }
+                }
+                ?>
                 <label><img src="img/user_log.png"><input type="text" name="log" placeholder="Login"></label>
                 <label><img src="img/key_log.png"><input type="password" name="pass" placeholder="Hasło"></label>
                 <input type="submit" value="ZALOGUJ">
@@ -44,7 +90,6 @@
                 <div>
                     <div>
                         <img src="img/beard.png" alt="broda">
-                        <p class="price">60zł</p>
                     </div>
                     <p class="yellow">Strzyżenie brody/trymowanie</p>
                     <p>(grooming brody / pielęgnacja)</p>
@@ -52,7 +97,6 @@
                 <div>
                     <div>
                         <img src="img/hair.png" alt="włosy">
-                        <p class="price">90zł</p>
                     </div>
                     <p class="yellow">Strzyżenie włosów</p>
                     <p>(strzyżenie / pielęgnacja / modelowanie)</p>
@@ -60,7 +104,6 @@
                 <div>
                     <div>
                         <img src="img/bald.png" alt="włosy">
-                        <p class="price">90zł</p>
                     </div>
                     <p class="yellow">Strzyżenie na łyso + shaver</p>
                     <p>(strzyżenie / shaver / pielęgnacja)</p>

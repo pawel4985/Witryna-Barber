@@ -1,0 +1,46 @@
+header .login form.logowanie {
+    transition: 1s;
+    padding: 20px;
+    padding-right: 10px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+header .login form.logowanie input {
+    font-size: 35px;
+}
+
+header .login form.logowanie label img {
+    margin-right: 10px;
+    width: 26px;
+}
+
+header .login form.logowanie {
+    overflow: hidden;
+}
+
+header .login form.logowanie label:last-of-type {
+    text-align: left;
+    margin-top: 8px;
+    border: 0;
+    font-size: 21px;
+}
+
+header .login form.logowanie label:nth-of-type(4) {
+    transform: translateX(103%);
+    height: 0;
+    transition: 0.4s;
+}
+
+header .login form.logowanie label:nth-of-type(4).show {
+    height: 100%;
+    transform: translateX(0%);
+}
