@@ -14,20 +14,22 @@
 </head>
 
 <body>
-    <header>
-        <img src="img/scissors.png" alt="logo-nożyczki" class="logo">
-        <div class="hamburger">
-            <span class="ham"></span>
-            <span class="ham"></span>
-            <span class="ham"></span>
-        </div>
-        <div class="content">
-            <h1>BarberCentral</h1>
-            <p>Zadbamy<span class="yellow"> kompleksowo </span>o twój<br> wizerunek, włosy i zarost</p>
-            <img src="img/beard.png" alt="broda ikonka" class="header_logo">
-        </div>
-        <a href="" class="visit">Umów się na wizytę</a>
-    </header>
+    <div class="wrapper">
+        <header>
+            <img src="img/scissors.png" alt="logo-nożyczki" class="logo">
+            <div class="hamburger">
+                <span class="ham"></span>
+                <span class="ham"></span>
+                <span class="ham"></span>
+            </div>
+            <div class="content">
+                <h1>BarberCentral</h1>
+                <p>Zadbamy<span class="yellow"> kompleksowo </span>o twój<br> wizerunek, włosy i zarost</p>
+                <img src="img/beard.png" alt="broda ikonka" class="header_logo">
+            </div>
+            <a href="" class="visit">Umów się na wizytę</a>
+        </header>
+    </div>
 </body>
 
 </html>
