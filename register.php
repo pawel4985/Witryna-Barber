@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <img src="img/scissors.png" alt="logo-nożyczki" class="logo">
+        <a href="index.php"><img src="img/scissors.png" alt="logo-nożyczki" class="logo"></a>
         <div class="hamburger">
             <span class="ham"></span>
             <span class="ham"></span>

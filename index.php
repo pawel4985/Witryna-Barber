@@ -19,7 +19,7 @@ session_start();
 <body>
     <div class="wrapper">
         <header>
-            <img src="img/scissors.png" alt="logo-nożyczki" class="logo">
+            <a href="index.php"><img src="img/scissors.png" alt="logo-nożyczki" class="logo"></a>
             <div class="hamburger">
                 <span class="ham"></span>
                 <span class="ham"></span>
@@ -135,19 +135,34 @@ session_start();
             <div class="appointment">
                 <div class="content">
                     <h2>Umów się na wizytę</h2>
-                    <form class="apoint" action="" method="POST">
+                    <div class="apoint" action="" method="POST">
                         <div class="left">
-                            <input type="text" name="dane">
-                            <div class="calendar"></div>
+                            <input type="text" placeholder="Imię i nazwisko" name="dane">
+                            <div class="calendar">
+                                <p class="mounth"></p>
+                                <p class="date"></p>
+                                <div class="days_name">
+                                    <div>Pon</div>
+                                    <div>Wt</div>
+                                    <div>Śr</div>
+                                    <div>Czw</div>
+                                    <div>Pt</div>
+                                    <div>Sob</div>
+                                    <div>Niedz</div>
+                                </div>
+                                <div class="days">
+                                </div>
+                            </div>
                         </div>
                         <div class="services">
-                            <label>Strzyżenie brody<input type="radio"></label>
-                            <label>Strzyżenie włosów<input type="radio"></label>
-                            <label>Strzyżenie na łyso + shaver<input type="radio"></label>
+                            <div><label>Strzyżenie brody</label><input name="service" type="radio"></div>
+                            <div><label>Strzyżenie włosów</label><input name="service" type="radio"></div>
+                            <div><label>Strzyżenie na łyso + shaver</label><input name="service" type="radio">
+                            </div>
                         </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
         </main>
         <footer>
             <h3>KONTAKT</h3>

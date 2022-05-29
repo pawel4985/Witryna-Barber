@@ -6,6 +6,7 @@
 
 .wrapper {
     overflow: hidden;
+    font-family: roboto;
 }
 
 header {
@@ -285,18 +286,27 @@ main .appointment .content {
 }
 
 main .appointment .content .apoint {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-main .appointment .content .apoint {
-    border: 2px solid #F1C40F;
+    border: 1px solid #F1C40F;
     width: 60%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    background-color: rgba(238, 238, 238, 0.486);
 }
 
 main .appointment .content .apoint .left {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
     width: 40%;
+}
+
+main .appointment .content .apoint .left input {
+    border: 1px solid #F1C40F;
+    display: block;
+    font-size: 20px;
+    padding: 6px;
+    margin: 20px 0;
 }
 
 main .appointment .content .apoint .services {
@@ -305,16 +315,76 @@ main .appointment .content .apoint .services {
 }
 
 main .appointment .content .apoint .left .calendar {
+    padding: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #F1C40F;
     height: 300px;
-    background-color: #F1C40F;
-    width: 90%;
-    margin: 0 5%;
+    background-color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
-main .appointment .content .apoint .services label {
-    display: block;
-    border-bottom: 2px solid #aaa;
+main .appointment .content .apoint .left .calendar .mounth {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+main .appointment .content .apoint .left .calendar .date {
+    margin-bottom: 7px;
+}
+
+.prev-date,
+.next-date {
+    color: #aaa;
+}
+
+.today {
+    background-color: #F1C40F;
+    border-radius: 10px;
+}
+
+main .appointment .content .apoint .left .calendar .days_name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5px;
+}
+
+main .appointment .content .apoint .left .calendar .days_name div {
+    width: 14%;
+}
+
+main .appointment .content .apoint .left .calendar .days {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+main .appointment .content .apoint .left .calendar .days div {
+    margin: 6px 0;
+    width: 14%;
+}
+
+main .appointment .content .apoint .services div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #F1C40F;
+    padding: 10px;
+    background-color: white;
     padding-bottom: 15px;
+    margin: 10px 20px 10px 0;
+}
+
+main .appointment .content .apoint .services div input {
+    margin-right: 20px;
+    filter: grayscale(1);
+    height: 20px;
+    width: 20px;
 }
 
 footer {
