@@ -277,6 +277,46 @@ main .team .teammates div p.title {
     margin: 15px 0 3px 0;
 }
 
+main .appointment .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .appointment .content .apoint {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+main .appointment .content .apoint {
+    border: 2px solid #F1C40F;
+    width: 60%;
+}
+
+main .appointment .content .apoint .left {
+    width: 40%;
+}
+
+main .appointment .content .apoint .services {
+    width: 60%;
+    font-family: roboto;
+}
+
+main .appointment .content .apoint .left .calendar {
+    height: 300px;
+    background-color: #F1C40F;
+    width: 90%;
+    margin: 0 5%;
+}
+
+main .appointment .content .apoint .services label {
+    display: block;
+    border-bottom: 2px solid #aaa;
+    padding-bottom: 15px;
+}
+
 footer {
     background-color: black;
     font-family: roboto;
