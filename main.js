@@ -19,56 +19,107 @@ if (document.getElementById('newsletter')) {
 }
 //kalendarz
 date = new Date();
-miesiace = [
-    "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesień",
-    "Październik", "Listopad", "Grudzień"
-]
-days = ""
-dni = ["Niedz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"]
-document.querySelector("main .appointment .content .apoint .left .calendar .mounth").innerHTML = miesiace[date.getMonth()];
-document.querySelector("main .appointment .content .apoint .left .calendar .date").innerHTML = dni[date.getDay()] + " " + date.getDate() +
-    " " + miesiace[date.getMonth()] + " " + date.getFullYear();
-tabela = document.querySelector(".calendar .days");
-const lastDay = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-).getDate();
-const prevLastDay = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    0
-).getDate();
+actual = new Date();
+calendar()
 
-function firstDayIndex() {
-    if (date.getDay() == 0) {
-        return 6
-    } else {
-        return date.getDay() - 1
+function calendar() {
+    date.setDate(1);
+    miesiace = [
+        "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesień",
+        "Październik", "Listopad", "Grudzień"
+    ]
+    days = ""
+    dni = ["Niedz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"]
+    document.querySelector("main .appointment .content .apoint .left .calendar .mounth").innerHTML = miesiace[date.getMonth()];
+    document.querySelector("main .appointment .content .apoint .left .calendar .date").innerHTML = dni[actual.getDay()] + " " + date.getDate() +
+        " " + miesiace[date.getMonth()] + " " + date.getFullYear();
+    tabela = document.querySelector(".calendar .days");
+    const lastDay = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0
+    ).getDate();
+    const prevLastDay = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        0
+    ).getDate();
+
+    function firstDayIndex() {
+        if (date.getDay() == 0) {
+            return 6
+        } else {
+            return date.getDay() - 1
+        }
+    }
+    const lastDayIndex = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0
+    ).getDay();
+    const nextDays = 7 - lastDayIndex - 1;
+    for (let x = firstDayIndex(); x > 0; x--) {
+        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    }
+
+    for (let i = 1; i <= lastDay; i++) {
+        if (
+            i === new Date().getDate() &&
+            date.getMonth() === new Date().getMonth()
+        ) {
+            days += `<div class="today" onclick="select(this)">${i}</div>`;
+        } else {
+            days += `<div onclick="select(this)">${i}</div>`;
+        }
+    }
+
+    for (let j = 1; j <= nextDays + 1; j++) {
+        days += `<div class="next-date"">${j}</div>`;
+        tabela.innerHTML = days;
     }
 }
-const lastDayIndex = new Date(
-    date.getFullYear(),
-    date.getMonth() + 1,
-    0
-).getDay();
-const nextDays = 7 - lastDayIndex - 1;
-for (let x = firstDayIndex(); x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-}
 
-for (let i = 1; i <= lastDay; i++) {
-    if (
-        i === new Date().getDate() &&
-        date.getMonth() === new Date().getMonth()
-    ) {
-        days += `<div class="today">${i}</div>`;
-    } else {
-        days += `<div>${i}</div>`;
+function nextLastDay(i) {
+    const nextLastDay = new Date(
+        date.getFullYear(),
+        date.getMonth() + i + 1,
+        0
+    ).getDate();
+    return nextLastDay
+}
+let count = 1;
+let count_days = 0;
+document.querySelector(".control img:first-of-type").addEventListener("click", () => {
+    date.setMonth(date.getMonth() - 1);
+    calendar()
+})
+document.querySelector(".control img:last-of-type").addEventListener("click", () => {
+    date.setMonth(date.getMonth() + 1);
+    calendar()
+})
+
+let last_div
+
+function select(div) {
+    if (last_div) {
+        last_div.classList.remove("select");
     }
+    div.classList.add("select");
+    last_div = div;
+    appoint()
 }
 
-for (let j = 1; j <= nextDays + 1; j++) {
-    days += `<div class="next-date">${j}</div>`;
-    tabela.innerHTML = days;
+function appoint() {
+    if (document.querySelector(".select")) {
+        dzien = document.querySelector(".select").textContent
+        miesiac = date.getMonth() + 1
+        if (dzien < 10) {
+            dzien = "0" + dzien;
+        }
+        if (miesiac < 10) {
+            miesiac = "0" + miesiac;
+        }
+        data = dzien + "." + miesiac + "." + date.getFullYear()
+        document.getElementById("date").value = data;
+    }
 }

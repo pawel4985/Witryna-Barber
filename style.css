@@ -279,19 +279,28 @@ main .team .teammates div p.title {
 }
 
 main .appointment .content {
+    margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+.wrong {
+    border-color: red;
+}
+
 main .appointment .content .apoint {
     border: 1px solid #F1C40F;
     width: 60%;
+    position: relative;
+    background-color: rgba(238, 238, 238, 0.486);
+}
+
+main .appointment .content .apoint form {
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    background-color: rgba(238, 238, 238, 0.486);
 }
 
 main .appointment .content .apoint .left {
@@ -299,6 +308,18 @@ main .appointment .content .apoint .left {
     flex-direction: column;
     margin: 0 20px;
     width: 40%;
+}
+
+main .appointment .content .apoint .left label {
+    align-self: center;
+    font-size: 20px;
+}
+
+main .appointment .content .apoint .left select {
+    width: 75px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #F1C40F;
 }
 
 main .appointment .content .apoint .left input {
@@ -310,11 +331,31 @@ main .appointment .content .apoint .left input {
 }
 
 main .appointment .content .apoint .services {
-    width: 60%;
+    width: 100%;
     font-family: roboto;
 }
 
+main .appointment .content .apoint .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+main .appointment .content .apoint .right input[type="submit"] {
+    position: absolute;
+    cursor: pointer;
+    bottom: 10px;
+    font-family: roboto;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: white;
+    border: 2px solid #F1C40F;
+}
+
 main .appointment .content .apoint .left .calendar {
+    position: relative;
     padding: 5px;
     text-align: center;
     display: flex;
@@ -335,6 +376,10 @@ main .appointment .content .apoint .left .calendar .date {
     margin-bottom: 7px;
 }
 
+main .appointment .content .apoint .left .calendar div.days {
+    cursor: pointer;
+}
+
 .prev-date,
 .next-date {
     color: #aaa;
@@ -343,6 +388,33 @@ main .appointment .content .apoint .left .calendar .date {
 .today {
     background-color: #F1C40F;
     border-radius: 10px;
+}
+
+.control {
+    width: 100%;
+    position: absolute;
+}
+
+.control img {
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.control img:first-of-type {
+    left: 0;
+}
+
+.control img:last-of-type {
+    right: 8px;
+}
+
+.select {
+    border-radius: 10px;
+    background-color: greenyellow;
 }
 
 main .appointment .content .apoint .left .calendar .days_name {

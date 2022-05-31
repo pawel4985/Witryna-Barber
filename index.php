@@ -29,7 +29,7 @@ session_start();
                 <div class="log_item"><img src="img/user.png"></div>
                 <form class="logowanie" action="" method="post">
                     <?php
-                    if ($_POST) {
+                    if (isset($_POST['login'])) {
                         $log = $_POST['log'];
                         $pass =  $_POST["pass"];
                         @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
@@ -73,7 +73,7 @@ session_start();
                     ?>
                     <label><img src="img/user_log.png"><input type="text" name="log" placeholder="Login"></label>
                     <label><img src="img/key_log.png"><input type="password" name="pass" placeholder="Hasło"></label>
-                    <input type="submit" value="ZALOGUJ">
+                    <input type="submit" name="login' value="ZALOGUJ">
                     <a href="register.php">REJESTRACJA</a>
                 </form>
             </div>
@@ -135,10 +135,33 @@ session_start();
             <div class="appointment">
                 <div class="content">
                     <h2>Umów się na wizytę</h2>
-                    <div class="apoint" action="" method="POST">
+                    <div class="apoint" >
+                    <form action="" id="apoi" method="post">
                         <div class="left">
                             <input type="text" placeholder="Imię i nazwisko" name="dane">
+                            <label>Godzina: <select name="hour">
+                                <option value="8:00">8:00</option>
+                                <option value="8:30">8:30</option>
+                                <option value="9:00">9:00</option>
+                                <option value="9:30">9:30</option>
+                                <option value="10:00">10:00</option>
+                                <option value="10:30">10:30</option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                            </select>
+                            </label>
                             <div class="calendar">
+                                <div class="control">
+                                    <img src="img/arrow-left.png">
+                                    <img src="img/arrow-right.png">
+                                </div>
                                 <p class="mounth"></p>
                                 <p class="date"></p>
                                 <div class="days_name">
@@ -154,15 +177,30 @@ session_start();
                                 </div>
                             </div>
                         </div>
-                        <div class="services">
-                            <div><label>Strzyżenie brody</label><input name="service" type="radio"></div>
-                            <div><label>Strzyżenie włosów</label><input name="service" type="radio"></div>
-                            <div><label>Strzyżenie na łyso + shaver</label><input name="service" type="radio">
+                        <div class="right">
+                            <div class="services">
+                            <div><label>Strzyżenie brody</label><input name="service" value="Strzyżenie brody" type="radio"></div>
+                            <div><label>Strzyżenie włosów</label><input name="service" value="Strzyżenie włosów" type="radio"></div>
+                            <div><label>Strzyżenie na łyso + shaver</label><input name="service" value="Strzyżenie na łyso + shaver" type="radio">
                             </div>
+                            </div>
+                            <input type="hidden" name="data" id="date">
+                            <input type="submit" name="apoint" value="UMÓW" onclick="appoint()">
                         </div>
+                        
                         </form>
+                        </div>
                     </div>
                 </div>
+                <?php 
+                        if(isset($_POST['apoint'])){
+                            $dane=$_POST['dane'];
+                            $godzina=$_POST['hour'];
+                            $usluga=$_POST['service'];
+                            $data=$_POST['data'];
+                            echo $dane." ".$godzina." ".$usluga." ".$data;
+                        }
+                        ?>
         </main>
         <footer>
             <h3>KONTAKT</h3>
@@ -179,8 +217,7 @@ session_start();
                 </div>
                 <div>
                     <p>Godziny pracy</p>
-                    <p>pon-pt: 8:00-18:00</p>
-                    <p>sob: 8:00-15:00</p>
+                    <p>pon-sob: 8:00-15:30</p>
                     <p>niedz: nieczynne</p>
                 </div>
             </div>
