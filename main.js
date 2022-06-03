@@ -133,7 +133,7 @@ function appoint() {
         if (miesiac < 10) {
             miesiac = "0" + miesiac;
         }
-        data = dzien + "." + miesiac + "." + date.getFullYear()
+        data = date.getFullYear() + "-" + miesiac + "-" + dzien
         document.getElementById("date").value = data;
     }
 }

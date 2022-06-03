@@ -137,11 +137,12 @@ session_start();
                     <h2>Umów się na wizytę</h2>
                     <div class="apoint">
                         <p class="wrong"></p>
+                        <p class="positive"></p>
                         <form action="" id="apoi" method="post">
                             <div class="left">
                                 <input type="text" id="dane" placeholder="Imię i nazwisko" name="dane">
                                 <label>Godzina: <select name="hour" id="hour">
-                                        <option value="none">-----</option>
+                                        <option value="">-----</option>
                                         <option value="8:00">8:00</option>
                                         <option value="8:30">8:30</option>
                                         <option value="9:00">9:00</option>
@@ -181,10 +182,14 @@ session_start();
                             </div>
                             <div class="right">
                                 <div class="services">
-                                    <div><label>Strzyżenie brody</label><input name="serv" value="Strzyżenie brody" type="radio"></div>
-                                    <div><label>Strzyżenie włosów</label><input name="serv" value="Strzyżenie włosów" type="radio"></div>
-                                    <div><label>Strzyżenie na łyso + shaver</label><input name="serv" value="Strzyżenie na łyso + shaver" type="radio">
-                                    </div>
+                                    <?php
+                                    @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych;");
+                                    $pyt1 = mysqli_query($db, "SELECT * FROM services;");
+                                    while ($row = mysqli_fetch_assoc($pyt1)) {
+                                        echo ("<div><label>$row[nazwa_uslugi]</label><input name='serv' value='$row[id]' type='radio'></div>");
+                                    }
+                                    mysqli_close($db)
+                                    ?>
                                 </div>
                                 <input type="hidden" name="data" id="date">
                                 <input type="submit" name="apoint" value="UMÓW" onclick="appoint()">
@@ -202,9 +207,14 @@ session_start();
                 }
                 $data = $_POST['data'];
                 if (!empty($dane)) {
-                    if (!empty($godzina) && $godzina = 'none') {
+                    if (!empty($godzina) || $godzina = '') {
                         if (!empty($data)) {
                             if (!empty($usluga)) {
+                                @$db1 = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych;");
+                                mysqli_query($db1, "INSERT INTO appoints(dane,godzina,data,usluga) VALUES('$dane','$godzina','$data',$usluga);");
+                                echo ("<script>document.querySelector('.apoint p.positive').innerHTML = 'Zostałeś umówiony!';document.querySelector('#apoint_form').scrollIntoView({
+                                    behavior: 'auto'
+                                });</script>");
                             } else {
                                 echo ("<script>document.querySelector('.apoint p.wrong').innerHTML = 'Wybierz usługę!';document.querySelector('#apoint_form').scrollIntoView({
         behavior: 'auto'

@@ -503,7 +503,8 @@ footer p.copy {
     border-color: red !important;
 }
 
-.apoint p.wrong {
+.apoint p.wrong,
+.apoint p.positive {
     font-size: 20px;
     text-align: center;
     padding-top: 10px;
