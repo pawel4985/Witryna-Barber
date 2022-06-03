@@ -24,6 +24,7 @@ calendar()
 
 function calendar() {
     date.setDate(1);
+    sundays=0;
     miesiace = [
         "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpien", "Wrzesień",
         "Październik", "Listopad", "Grudzień"
@@ -44,7 +45,6 @@ function calendar() {
         date.getMonth(),
         0
     ).getDate();
-
     function firstDayIndex() {
         if (date.getDay() == 0) {
             return 6
@@ -59,17 +59,31 @@ function calendar() {
     ).getDay();
     const nextDays = 7 - lastDayIndex - 1;
     for (let x = firstDayIndex(); x > 0; x--) {
+        sundays++;
         days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
     }
 
     for (let i = 1; i <= lastDay; i++) {
+        sundays++;
         if (
             i === new Date().getDate() &&
             date.getMonth() === new Date().getMonth()
         ) {
-            days += `<div class="today" onclick="select(this)">${i}</div>`;
+            if(sundays==7){
+                days += `<div class="today">${i}</div>`;
+                sundays=0;
+            }else{
+                days += `<div class="today" onclick="select(this)">${i}</div>`;
+            }
+            
         } else {
-            days += `<div onclick="select(this)">${i}</div>`;
+            if(sundays==7){
+                days += `<div style="cursor: default;">${i}</div>`;
+                sundays=0;
+            }else{
+                days += `<div onclick="select(this)">${i}</div>`;
+            }
+            
         }
     }
 

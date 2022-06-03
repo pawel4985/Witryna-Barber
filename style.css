@@ -286,10 +286,6 @@ main .appointment .content {
     justify-content: center;
 }
 
-.wrong {
-    border-color: red;
-}
-
 main .appointment .content .apoint {
     border: 1px solid #F1C40F;
     width: 60%;
@@ -504,6 +500,13 @@ footer p.copy {
 
 .wrong {
     color: red;
+    border-color: red !important;
+}
+
+.apoint p.wrong {
+    font-size: 20px;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .positive {

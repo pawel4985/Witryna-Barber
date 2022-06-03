@@ -73,7 +73,7 @@ session_start();
                     ?>
                     <label><img src="img/user_log.png"><input type="text" name="log" placeholder="Login"></label>
                     <label><img src="img/key_log.png"><input type="password" name="pass" placeholder="Hasło"></label>
-                    <input type="submit" name="login' value="ZALOGUJ">
+                    <input type="submit" name="login" value="ZALOGUJ">
                     <a href="register.php">REJESTRACJA</a>
                 </form>
             </div>
@@ -133,74 +133,100 @@ session_start();
                 </div>
             </div>
             <div class="appointment">
-                <div class="content">
+                <div class="content" id="apoint_form">
                     <h2>Umów się na wizytę</h2>
-                    <div class="apoint" >
-                    <form action="" id="apoi" method="post">
-                        <div class="left">
-                            <input type="text" placeholder="Imię i nazwisko" name="dane">
-                            <label>Godzina: <select name="hour">
-                                <option value="8:00">8:00</option>
-                                <option value="8:30">8:30</option>
-                                <option value="9:00">9:00</option>
-                                <option value="9:30">9:30</option>
-                                <option value="10:00">10:00</option>
-                                <option value="10:30">10:30</option>
-                                <option value="11:00">11:00</option>
-                                <option value="11:30">11:30</option>
-                                <option value="12:00">12:00</option>
-                                <option value="12:30">12:30</option>
-                                <option value="13:00">13:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="14:00">14:00</option>
-                                <option value="14:30">14:30</option>
-                                <option value="15:00">15:00</option>
-                            </select>
-                            </label>
-                            <div class="calendar">
-                                <div class="control">
-                                    <img src="img/arrow-left.png">
-                                    <img src="img/arrow-right.png">
-                                </div>
-                                <p class="mounth"></p>
-                                <p class="date"></p>
-                                <div class="days_name">
-                                    <div>Pon</div>
-                                    <div>Wt</div>
-                                    <div>Śr</div>
-                                    <div>Czw</div>
-                                    <div>Pt</div>
-                                    <div>Sob</div>
-                                    <div>Niedz</div>
-                                </div>
-                                <div class="days">
+                    <div class="apoint">
+                        <p class="wrong"></p>
+                        <form action="" id="apoi" method="post">
+                            <div class="left">
+                                <input type="text" id="dane" placeholder="Imię i nazwisko" name="dane">
+                                <label>Godzina: <select name="hour" id="hour">
+                                        <option value="none">-----</option>
+                                        <option value="8:00">8:00</option>
+                                        <option value="8:30">8:30</option>
+                                        <option value="9:00">9:00</option>
+                                        <option value="9:30">9:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                    </select>
+                                </label>
+                                <div class="calendar" id="cal">
+                                    <div class="control">
+                                        <img src="img/arrow-left.png">
+                                        <img src="img/arrow-right.png">
+                                    </div>
+                                    <p class="mounth"></p>
+                                    <p class="date"></p>
+                                    <div class="days_name">
+                                        <div>Pon</div>
+                                        <div>Wt</div>
+                                        <div>Śr</div>
+                                        <div>Czw</div>
+                                        <div>Pt</div>
+                                        <div>Sob</div>
+                                        <div>Niedz</div>
+                                    </div>
+                                    <div class="days">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="right">
-                            <div class="services">
-                            <div><label>Strzyżenie brody</label><input name="service" value="Strzyżenie brody" type="radio"></div>
-                            <div><label>Strzyżenie włosów</label><input name="service" value="Strzyżenie włosów" type="radio"></div>
-                            <div><label>Strzyżenie na łyso + shaver</label><input name="service" value="Strzyżenie na łyso + shaver" type="radio">
+                            <div class="right">
+                                <div class="services">
+                                    <div><label>Strzyżenie brody</label><input name="serv" value="Strzyżenie brody" type="radio"></div>
+                                    <div><label>Strzyżenie włosów</label><input name="serv" value="Strzyżenie włosów" type="radio"></div>
+                                    <div><label>Strzyżenie na łyso + shaver</label><input name="serv" value="Strzyżenie na łyso + shaver" type="radio">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="data" id="date">
+                                <input type="submit" name="apoint" value="UMÓW" onclick="appoint()">
                             </div>
-                            </div>
-                            <input type="hidden" name="data" id="date">
-                            <input type="submit" name="apoint" value="UMÓW" onclick="appoint()">
-                        </div>
-                        
                         </form>
-                        </div>
                     </div>
                 </div>
-                <?php 
-                        if(isset($_POST['apoint'])){
-                            $dane=$_POST['dane'];
-                            $godzina=$_POST['hour'];
-                            $usluga=$_POST['service'];
-                            $data=$_POST['data'];
-                            echo $dane." ".$godzina." ".$usluga." ".$data;
+            </div>
+            <?php
+            if (isset($_POST['apoint'])) {
+                $dane = $_POST['dane'];
+                $godzina = $_POST['hour'];
+                if (isset($_POST['serv'])) {
+                    $usluga = $_POST['serv'];
+                }
+                $data = $_POST['data'];
+                if (!empty($dane)) {
+                    if (!empty($godzina) && $godzina = 'none') {
+                        if (!empty($data)) {
+                            if (!empty($usluga)) {
+                            } else {
+                                echo ("<script>document.querySelector('.apoint p.wrong').innerHTML = 'Wybierz usługę!';document.querySelector('#apoint_form').scrollIntoView({
+        behavior: 'auto'
+    });</script>");
+                            }
+                        } else {
+                            echo ("<script>document.querySelector('.apoint p.wrong').innerHTML = 'Wybierz datę!';document.querySelector('#apoint_form').scrollIntoView({
+        behavior: 'auto'
+    });</script>");
                         }
-                        ?>
+                    } else {
+                        echo ("<script>document.querySelector('.apoint p.wrong').innerHTML = 'Wybierz godzinę!';document.querySelector('#apoint_form').scrollIntoView({
+        behavior: 'auto'
+    });</script>");
+                    }
+                } else {
+                    echo ("<script>document.querySelector('.apoint p.wrong').innerHTML = 'Podaj imię i nazwisko!';document.querySelector('#apoint_form').scrollIntoView({
+        behavior: 'auto'
+    });</script>");
+                }
+            }
+            ?>
         </main>
         <footer>
             <h3>KONTAKT</h3>
