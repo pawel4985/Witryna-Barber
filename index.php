@@ -11,13 +11,27 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <script src="main.js" defer></script>
     <title>Barbercentral</title>
 </head>
 
 <body>
     <div class="wrapper">
+        <div class="control"></div>
+        <?php
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
+            echo ("<script>document.querySelector('.control').innerHTML='<a href=admin.php>ZARZĄDZAJ</a>';</script>");
+        }
+        ?>
+        <nav>
+            <ul>
+                <li><a>Oferta dnia</a></li>
+                <li><a onclick="scroll_apoint('main div.services')">Nasze usługi</a></li>
+                <li><a onclick="scroll_apoint('main div.team')">Nasz zespół</a></li>
+                <li><a href="">Opinie</a></li>
+            </ul>
+        </nav>
         <header>
             <a href="index.php"><img src="img/scissors.png" alt="logo-nożyczki" class="logo"></a>
             <div class="hamburger">
@@ -46,8 +60,10 @@ session_start();
                                         document.querySelector('header .login .log_item').classList.remove('show')
                                     },1500)</script>");
                                         $_SESSION["log"] = true;
-                                        if (mysqli_fetch_assoc($check)['typ'] = "pracownik") {
-                                            $_SESSION["admin"] = true;
+                                        $check = mysqli_query($db, "SELECT * FROM accounts WHERE nazwa='$log';");
+                                        if (mysqli_fetch_assoc($check)['typ'] == "pracownik") {
+                                            $_SESSION['admin'] = true;
+                                            echo ("<script>document.querySelector('.control').innerHTML='<a href=admin.php>ZARZĄDZAJ</a>';</script>");
                                         }
                                     } else {
                                         echo ("<script>document.querySelector('header .login form.logowanie').classList.add('show')
@@ -82,7 +98,7 @@ session_start();
                 <p>Zadbamy<span class="yellow"> kompleksowo </span>o twój<br> wizerunek, włosy i zarost</p>
                 <img src="img/beard.png" alt="broda ikonka" class="header_logo">
             </div>
-            <a href="" class="visit">Umów się na wizytę</a>
+            <a onclick="scroll_apoint('#apoint_form')" class="visit">Umów się na wizytę</a>
         </header>
         <main>
             <div class="services">
@@ -141,25 +157,6 @@ session_start();
                         <form action="" id="apoi" method="post">
                             <div class="left">
                                 <input type="text" id="dane" placeholder="Imię i nazwisko" name="dane">
-                                <label>Godzina: <select name="hour" id="hour">
-                                        <option value="">-----</option>
-                                        <option value="8:00">8:00</option>
-                                        <option value="8:30">8:30</option>
-                                        <option value="9:00">9:00</option>
-                                        <option value="9:30">9:30</option>
-                                        <option value="10:00">10:00</option>
-                                        <option value="10:30">10:30</option>
-                                        <option value="11:00">11:00</option>
-                                        <option value="11:30">11:30</option>
-                                        <option value="12:00">12:00</option>
-                                        <option value="12:30">12:30</option>
-                                        <option value="13:00">13:00</option>
-                                        <option value="13:30">13:30</option>
-                                        <option value="14:00">14:00</option>
-                                        <option value="14:30">14:30</option>
-                                        <option value="15:00">15:00</option>
-                                    </select>
-                                </label>
                                 <div class="calendar" id="cal">
                                     <div class="control">
                                         <img src="img/arrow-left.png">
@@ -179,6 +176,25 @@ session_start();
                                     <div class="days">
                                     </div>
                                 </div>
+                                <label>Godzina: <select name="hour" id="hour">
+                                        <option value="">-----</option>
+                                        <option value="8:00">8:00</option>
+                                        <option value="8:30">8:30</option>
+                                        <option value="9:00">9:00</option>
+                                        <option value="9:30">9:30</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="10:30">10:30</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="11:30">11:30</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="12:30">12:30</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="13:30">13:30</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="14:30">14:30</option>
+                                        <option value="15:00">15:00</option>
+                                    </select>
+                                </label>
                             </div>
                             <div class="right">
                                 <div class="services">

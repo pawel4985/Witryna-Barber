@@ -1,9 +1,12 @@
 //hamburger menu animacja po kliknięciu
+if(document.querySelector("header .hamburger")){
 document.querySelector("header .hamburger").addEventListener("click", () => {
     for (i = 0; i < 3; i++) {
         document.getElementsByClassName('ham')[i].classList.toggle("active")
     }
+    document.querySelector("nav").classList.toggle("show");
 })
+}
 //wysunięcie logowania
 if (document.querySelector("header .login .log_item")) {
     document.querySelector("header .login .log_item").addEventListener("click", () => {
@@ -31,10 +34,12 @@ function calendar() {
     ]
     days = ""
     dni = ["Niedz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob", "Niedz"]
-    document.querySelector("main .appointment .content .apoint .left .calendar .mounth").innerHTML = miesiace[date.getMonth()];
+    if(document.querySelector("main .appointment .content .apoint .left .calendar .mounth")){
+        document.querySelector("main .appointment .content .apoint .left .calendar .mounth").innerHTML = miesiace[date.getMonth()];
     document.querySelector("main .appointment .content .apoint .left .calendar .date").innerHTML = dni[actual.getDay()] + " " + date.getDate() +
         " " + miesiace[date.getMonth()] + " " + date.getFullYear();
-    tabela = document.querySelector(".calendar .days");
+    }
+    if(document.querySelector(".calendar .days")){tabela = document.querySelector(".calendar .days");}
     const lastDay = new Date(
         date.getFullYear(),
         date.getMonth() + 1,
@@ -66,8 +71,8 @@ function calendar() {
     for (let i = 1; i <= lastDay; i++) {
         sundays++;
         if (
-            i === new Date().getDate() &&
-            date.getMonth() === new Date().getMonth()
+            i == new Date().getDate() &&
+            date.getMonth() == new Date().getMonth()
         ) {
             if(sundays==7){
                 days += `<div class="today">${i}</div>`;
@@ -77,20 +82,32 @@ function calendar() {
             }
             
         } else {
-            if(sundays==7){
-                days += `<div style="cursor: default;">${i}</div>`;
-                sundays=0;
+            if( i < new Date().getDate() &&
+            date.getMonth() == new Date().getMonth()||date.getMonth() < new Date().getMonth()){
+                if(sundays==7){
+                    days += `<div style="cursor: default;">${i}</div>`;
+                    sundays=0;
+                }else{
+                    days += `<div style="cursor: default;" >${i}</div>`;
+                }
             }else{
-                days += `<div onclick="select(this)">${i}</div>`;
+                if(sundays==7){
+                    days += `<div style="cursor: default;">${i}</div>`;
+                    sundays=0;
+                }else{
+                    days += `<div onclick="select(this)">${i}</div>`;
+                }
             }
+            
             
         }
     }
-
+    if(document.querySelector(".calendar .days")){
     for (let j = 1; j <= nextDays + 1; j++) {
         days += `<div class="next-date"">${j}</div>`;
         tabela.innerHTML = days;
     }
+}
 }
 
 function nextLastDay(i) {
@@ -103,6 +120,7 @@ function nextLastDay(i) {
 }
 let count = 1;
 let count_days = 0;
+if(document.querySelector(".control img:first-of-type")){
 document.querySelector(".control img:first-of-type").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
     calendar()
@@ -111,6 +129,7 @@ document.querySelector(".control img:last-of-type").addEventListener("click", ()
     date.setMonth(date.getMonth() + 1);
     calendar()
 })
+}
 
 let last_div
 
@@ -136,4 +155,9 @@ function appoint() {
         data = date.getFullYear() + "-" + miesiac + "-" + dzien
         document.getElementById("date").value = data;
     }
+}
+function scroll_apoint(where){
+    document.querySelector(where).scrollIntoView({
+        behavior: 'smooth'
+    })
 }
