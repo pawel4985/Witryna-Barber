@@ -25,26 +25,34 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
         <nav>
             <ul>
                 <li><a href="admin.php">Najbliższe wizyty</a></li>
-                <li><a>Oferta dnia</a></li>
-                <li><a href="">Dodaj oferte dnia</a></li>
-                <li><a href="">Dodaj usługę</a></li>
+                <li><a href="admin/add_day_offer.php">Dodaj oferte dnia</a></li>
+                <li><a href="admin/add_services.php">Dodaj usługę</a></li>
             </ul>
         </nav>
         <header>
             <a href="index.php"><img src="img/scissors.png" alt="logo-nożyczki" class="logo"></a>
             <div class="appoints">
-                <table>
+                <?php
+                if ($_POST) {
+                    if (isset($_POST['id'])) {
+                        @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+                        $pyt1 = mysqli_query($db, "DELETE FROM appoints WHERE id=$_POST[id]");
+                    }
+                }
+                ?>
+                <table CELLSPACING=0>
                     <tr>
                         <th>Klient</th>
                         <th>Data</th>
                         <th>Godzina</th>
-                        <th>Usługa</th>
+                        <th colspan="2">Usługa</th>
                     </tr>
+
                     <?php
                     @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
-                    $pyt1 = mysqli_query($db, "SELECT * FROM appoints;");
+                    $pyt1 = mysqli_query($db, "SELECT appoints.id,dane,godzina,data,services.nazwa_uslugi AS nazwa_uslugi FROM appoints JOIN services ON services.id=appoints.usluga ORDER BY data,godzina;");
                     while ($row = mysqli_fetch_assoc($pyt1)) {
-                        echo ("<tr><td>$row[dane]</td><td>$row[data]</td><td>$row[godzina]</td><td>$row[usluga]</td></tr>");
+                        echo ("<form action='' method='post'><tr><td>$row[dane]</td><td>$row[data]</td><td>$row[godzina]</td><td>$row[nazwa_uslugi]</td><td><input type='submit' value='Wykonano'><input type='hidden' name='id' value=$row[id]></td></tr></form>");
                     }
                     ?>
                 </table>

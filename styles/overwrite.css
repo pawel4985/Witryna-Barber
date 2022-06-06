@@ -61,3 +61,34 @@ header .appoints {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+
+header .appoints table tr:first-of-type th {
+    border-bottom: 1px solid black;
+}
+
+header .appoints table td,
+header .appoints table th {
+    font-size: 22px;
+    padding: 10px;
+}
+
+header .appoints table input[type='submit'] {
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    background-color: white;
+    border-color: #F1C40F;
+    border-style: solid;
+    color: black;
+    cursor: pointer;
+    transition: 0.5s;
+    font-family: roboto;
+}
+
+header .appoints table input[type='submit']:hover {
+    background-color: #F1C40F;
+    border-color: white;
+    color: black;
+}

@@ -26,7 +26,7 @@ session_start();
         ?>
         <nav>
             <ul>
-                <li><a>Oferta dnia</a></li>
+                <li><a onclick="scroll_apoint('main div.day_offer')">Oferta dnia</a></li>
                 <li><a onclick="scroll_apoint('main div.services')">Nasze usługi</a></li>
                 <li><a onclick="scroll_apoint('main div.team')">Nasz zespół</a></li>
                 <li><a href="">Opinie</a></li>
@@ -85,6 +85,7 @@ session_start();
                                     document.querySelector('header .login .log_item').classList.add('show')</script>");
                             echo ("<p class='wrong'>Podaj login!</p>");
                         }
+                        mysqli_close($db);
                     }
                     ?>
                     <label><img src="img/user_log.png"><input type="text" name="log" placeholder="Login"></label>
@@ -101,6 +102,23 @@ session_start();
             <a onclick="scroll_apoint('#apoint_form')" class="visit">Umów się na wizytę</a>
         </header>
         <main>
+            <?php
+            @$db3 = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+            $day_of = mysqli_query($db3, "SELECT nazwa_uslugi,rabat FROM day_offer;");
+            echo ("<div class='day_offer'>
+            <h2>Oferta dnia</h2>
+            <div class='content'>
+                <div class='left'><img src='img/calendar.png' alt='kalendarz'></div>
+                <div class='right'>");
+            while ($row = mysqli_fetch_assoc($day_of)) {
+                echo ("<p>Tylko dziś $row[nazwa_uslugi]<span> -$row[rabat]%</span></p>");
+            }
+            echo ("<a onclick='scroll_apoint(`#apoint_form`)' class='visit'>Umów się na wizytę</a>
+                </div>
+            </div>
+        </div>");
+
+            ?>
             <div class="services">
                 <h2>Nasze usługi</h2>
                 <div class="service">
@@ -251,6 +269,7 @@ session_start();
         behavior: 'auto'
     });</script>");
                 }
+                mysqli_close($db);
             }
             ?>
         </main>

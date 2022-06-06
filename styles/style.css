@@ -10,6 +10,9 @@
     font-family: roboto;
 }
 
+input[type='submit'] {
+    font-family: roboto;
+}
 
 .control {
     position: absolute;
@@ -277,6 +280,63 @@ header .login form.logowanie.show {
     right: 0%;
 }
 
+main .day_offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .day_offer .content {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+main .day_offer a.visit {
+    cursor: pointer;
+    border: 2px solid #F1C40F;
+    padding: 10px 15px;
+    font-size: 20px;
+    font-family: roboto;
+    text-decoration: none;
+    color: black;
+}
+
+main .day_offer .content .left {
+    text-align: center;
+    width: 15%;
+}
+
+main .day_offer .content .right p {
+    margin: 0 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+main .day_offer .content .right p span {
+    font-weight: bold;
+}
+
+main .day_offer .content {
+    border: 2px solid #F1C40F;
+    width: 35%;
+}
+
+main .day_offer .content .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .day_offer .content .left img {
+    transform: rotate(-7deg);
+    width: 100%;
+    display: block;
+}
+
 main .services .service {
     display: flex;
     align-items: center;
@@ -315,7 +375,7 @@ main .team {
 main h2 {
     font-family: roboto;
     text-align: center;
-    margin: 10px 0;
+    margin: 40px 0 10px 0;
     font-size: 35px;
 }
 
@@ -392,9 +452,12 @@ main .appointment .content .apoint .left input {
     margin: 20px 0;
 }
 
+
 main .appointment .content .apoint .services {
     width: 100%;
     font-family: roboto;
+    height: 380px;
+    overflow-y: auto;
 }
 
 main .appointment .content .apoint .right {
@@ -402,6 +465,7 @@ main .appointment .content .apoint .right {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     width: 60%;
 }
 
