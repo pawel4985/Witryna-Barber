@@ -18,8 +18,39 @@ header .login form.logowanie {
     font-size: 30px;
 }
 
-header .login form.logowanie input {
-    font-size: 35px;
+header .login form.logowanie.usluga {
+    position: static;
+    transform: none;
+}
+
+header .login form.logowanie input,
+header .login form.logowanie select,
+header .login form.logowanie textarea {
+    font-size: 25px;
+    border: none;
+    resize: none;
+}
+
+header .login form.logowanie textarea {
+    height: 200px;
+    width: 30vw;
+    padding: 5px;
+    margin-left: 20px;
+    font-family: roboto;
+    font-size: 20px;
+}
+
+header .login form.logowanie textarea:focus {
+    outline: 0;
+}
+
+header .login form.logowanie select option {
+    color: black;
+}
+
+header .login form.logowanie label {
+    width: 100%;
+    justify-content: flex-start;
 }
 
 header .login form.logowanie label img {

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_POST['logout'])) {
+    session_unset();
+    session_destroy();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -11,6 +15,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img//favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
     <script src="main.js" defer></script>
     <title>Barbercentral</title>
@@ -42,6 +47,7 @@ session_start();
             <div class="login">
                 <div class="log_item"><img src="img/user.png"></div>
                 <form class="logowanie" action="" method="post">
+                    <p class="first_login"></p>
                     <?php
                     if (isset($_POST['login'])) {
                         $log = $_POST['log'];
@@ -60,6 +66,9 @@ session_start();
                                         document.querySelector('header .login .log_item').classList.remove('show')
                                     },1500)</script>");
                                         $_SESSION["log"] = true;
+                                        $_SESSION["name"] = $log;
+                                        $check = mysqli_query($db, "SELECT * FROM accounts WHERE nazwa='$log';");
+                                        $_SESSION["user_id"] = mysqli_fetch_assoc($check)['id'];
                                         $check = mysqli_query($db, "SELECT * FROM accounts WHERE nazwa='$log';");
                                         if (mysqli_fetch_assoc($check)['typ'] == "pracownik") {
                                             $_SESSION['admin'] = true;
@@ -94,12 +103,19 @@ session_start();
                     <a href="register.php">REJESTRACJA</a>
                 </form>
             </div>
+            <?php
+            if (isset($_SESSION['log'])) {
+                echo ("<script>
+                document.querySelector('header .login').innerHTML += '<img src=img/logout.png>';
+            </script>");
+            }
+            ?>
             <div class="content">
                 <h1>BarberCentral</h1>
                 <p>Zadbamy<span class="yellow"> kompleksowo </span>o twój<br> wizerunek, włosy i zarost</p>
                 <img src="img/beard.png" alt="broda ikonka" class="header_logo">
             </div>
-            <a onclick="scroll_apoint('#apoint_form')" class="visit">Umów się na wizytę</a>
+            <a onclick="scroll_apoint(' #apoint_form')" class="visit">Umów się na wizytę</a>
         </header>
         <main>
             <?php
@@ -165,6 +181,37 @@ session_start();
                         <p>Specjalista od trymowania</p>
                     </div>
                 </div>
+            </div>
+            <div class="opinions">
+                <h2>Opinie</h2>
+                <p class="title">Opinie naszych klientów</p>
+                <div class="opinion">
+                    <img src="img/circle_arrow_left.png">
+                    <div class="inside">
+                        <?php
+                        @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+                        $pyt1 = mysqli_query($db, "SELECT opinia,accounts.nazwa AS username FROM opinions JOIN accounts ON opinions.user=accounts.id;");
+                        while ($row = mysqli_fetch_assoc($pyt1)) {
+                            echo ("<div>
+                            <p class='nickname'>$row[username]</p>
+                            <p class='contents'>$row[opinia]</p>
+                            </div>");
+                        }
+                        ?>
+                    </div>
+                    <img src="img/circle_arrow_right.png">
+                </div>
+
+
+                <?php
+                if (isset($_SESSION["log"]) && $_SESSION["log"] == true) {
+                    if (!isset($_SESSION["admin"])) {
+                        echo ("<a href='add_opinion.php' class='visit'>Napisz opinię</a>");
+                    }
+                } else {
+                    echo ("<a onclick='scroll_apoint(`header`)' class='visit'>Napisz opinię</a>");
+                }
+                ?>
             </div>
             <div class="appointment">
                 <div class="content" id="apoint_form">
@@ -269,7 +316,6 @@ session_start();
         behavior: 'auto'
     });</script>");
                 }
-                mysqli_close($db);
             }
             ?>
         </main>

@@ -14,6 +14,7 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img//favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/overwrite.css">
     <script src="main.js" defer></script>

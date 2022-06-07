@@ -404,6 +404,70 @@ main .team .teammates div p.title {
     margin: 15px 0 3px 0;
 }
 
+main .opinions p.title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+main .opinions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .opinions .opinion {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main .opinions .opinion img {
+    cursor: pointer;
+    width: 3%;
+}
+
+main .opinions .opinion .inside {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    display: flex;
+    width: 90%;
+}
+
+main .opinions .opinion .inside div p {
+    text-align: center;
+}
+
+main .opinions .opinion .inside div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    min-height: 150px;
+    min-width: calc(33.3333% - 10px);
+    border: 1px solid #F1C40F;
+}
+
+main .opinions .opinion .inside div p.nickname {
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+main .opinions a.visit {
+    cursor: pointer;
+    border: 3px solid #F1C40F;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: roboto;
+    text-decoration: none;
+    color: black;
+}
+
 main .appointment .content {
     margin-bottom: 40px;
     display: flex;
@@ -532,7 +596,7 @@ main .appointment .content .apoint .left .calendar div.days {
 }
 
 .control img:first-of-type {
-    left: 0;
+    left: 6px;
 }
 
 .control img:last-of-type {
@@ -643,4 +707,15 @@ footer p.copy {
 
 .positive {
     color: green;
+}
+
+.first_login {
+    color: goldenrod;
+}
+
+.logout {
+    width: 30px;
+    position: absolute;
+    top: 22px;
+    right: 100px;
 }

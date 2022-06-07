@@ -157,7 +157,27 @@ function appoint() {
     }
 }
 function scroll_apoint(where){
+    if(where!='header'){
     document.querySelector(where).scrollIntoView({
         behavior: 'smooth'
     })
+    }else{
+        document.querySelector(where).scrollIntoView({
+            behavior: 'smooth'
+        })
+        document.querySelector('header .login form.logowanie').classList.add('show')
+        document.querySelector('header .login .log_item').classList.add('show') 
+        document.querySelector(".first_login").innerHTML="Musisz być zalogowany!"
+    }
 }
+opinion_loc=0
+document.querySelector("main .opinions .opinion img:last-of-type").addEventListener('click',()=>{
+    opinion_loc+=document.querySelector("main .opinions .opinion .inside").clientWidth-5;
+    document.querySelector("main .opinions .opinion .inside").scroll(opinion_loc,0);
+})
+document.querySelector("main .opinions .opinion img:first-of-type").addEventListener('click',()=>{
+    if(opinion_loc>0){
+        opinion_loc-=document.querySelector("main .opinions .opinion .inside").clientWidth-5;
+    document.querySelector("main .opinions .opinion .inside").scroll(opinion_loc,0);
+    }
+})
