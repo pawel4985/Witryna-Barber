@@ -67,7 +67,7 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
                             mysqli_close($db)
                             ?>
                         </select></label>
-                    <label style="border-bottom: 1.4px solid #444;"><img src="../img/percent.png"><input type="number" name="rabat" min=1 placeholder="Wysokość rabatu"></label>
+                    <label style="border-bottom: 1.4px solid #444;"><img src="../img/percent.png"><input type="number" name="rabat" min="1" max="99" style="width: 100%;" placeholder="Wysokość rabatu"></label>
                     <input type="submit" value="Dodaj ofertę dnia">
                 </form>
             </div>
