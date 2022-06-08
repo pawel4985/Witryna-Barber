@@ -11,6 +11,12 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Barbercentral">
+    <meta name="description" content="Barbercentral - Zadbamy kompleksowo o twój wizerunek, włosy i zarost">
+    <meta name="keywords" content="włosy, broda, zarost, barber, fryzjer">
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="author" content="Paweł Kowalski">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../img//favicon.ico">
     <link rel="stylesheet" href="../styles/style.css">
@@ -25,7 +31,7 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
                 <ul>
                     <li><a href="../admin.php">Najbliższe wizyty</a></li>
                     <li><a href="">Dodaj oferte dnia</a></li>
-                    <li><a href="add_services.php">Dodaj usługę</a></li>
+                    <li><a href="add_services.php">Dodaj/usuń usługę</a></li>
                 </ul>
             </nav>
             <a href="../index.php"><img src="../img/scissors.png" alt="logo-nożyczki" class="logo"></a>
