@@ -321,7 +321,7 @@ main .day_offer .content .right p span {
 
 main .day_offer .content {
     border: 2px solid #F1C40F;
-    width: 35%;
+    width: 50%;
 }
 
 main .day_offer .content .right {
@@ -445,8 +445,10 @@ main .opinions .opinion .inside div {
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+    padding: 10px;
     min-height: 150px;
     min-width: calc(33.3333% - 10px);
+    max-width: calc(33.3333% - 10px);
     border: 1px solid #F1C40F;
 }
 
@@ -457,7 +459,7 @@ main .opinions .opinion .inside div p.nickname {
     margin-bottom: 10px;
 }
 
-main .opinions a.visit {
+main a.visit {
     cursor: pointer;
     border: 3px solid #F1C40F;
     padding: 10px;
@@ -603,6 +605,13 @@ main .appointment .content .apoint .left .calendar div.days {
     right: 8px;
 }
 
+.control.admin {
+    width: auto;
+    top: 50vh;
+    left: 0;
+    transform: translateY(-50%);
+}
+
 .select {
     border-radius: 10px;
     background-color: greenyellow;
@@ -714,6 +723,7 @@ footer p.copy {
 }
 
 .logout {
+    cursor: pointer;
     width: 30px;
     position: absolute;
     top: 22px;

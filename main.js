@@ -181,3 +181,6 @@ document.querySelector("main .opinions .opinion img:first-of-type").addEventList
     document.querySelector("main .opinions .opinion .inside").scroll(opinion_loc,0);
     }
 })
+function logout(){
+    window.location.href = 'index.php?logout=true';
+}

@@ -20,7 +20,7 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
 
 <body>
     <div class="wrapper">
-        <header>
+        <header class="serv">
             <nav>
                 <ul>
                     <li><a href="../admin.php">Najbliższe wizyty</a></li>
@@ -53,18 +53,20 @@ if (!isset($_SESSION["admin"]) && $_SESSION["admin"] != true) {
                         <label style="border-bottom: 1.4px solid #444;"><img src="../img/service.png"><input type="text" name="service" placeholder="Nazwa usługi"></label>
                         <input type="submit" name='add' value="Dodaj usługę">
                     </form>
-                    <table CELLSPACING=0 style="width: 100%">
-                        <tr>
-                            <th colspan="2">Nazwa uslugi</th>
-                        </tr>
-                        <?php
-                        @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
-                        $pyt1 = mysqli_query($db, "SELECT id,nazwa_uslugi FROM services;");
-                        while ($row = mysqli_fetch_assoc($pyt1)) {
-                            echo ("<form action='' method='post'><tr><td>$row[nazwa_uslugi]</td><td><input type='submit' name='delete' value='USUŃ'><input type='hidden' name='id' value=$row[id]></td></tr></form>");
-                        }
-                        ?>
-                    </table>
+                    <div class="table">
+                        <table CELLSPACING=0 style="width: 100%">
+                            <tr>
+                                <th colspan="2">Nazwa uslugi</th>
+                            </tr>
+                            <?php
+                            @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+                            $pyt1 = mysqli_query($db, "SELECT id,nazwa_uslugi FROM services;");
+                            while ($row = mysqli_fetch_assoc($pyt1)) {
+                                echo ("<form action='' method='post'><tr><td>$row[nazwa_uslugi]</td><td><input type='submit' name='delete' value='USUŃ'><input type='hidden' name='id' value=$row[id]></td></tr></form>");
+                            }
+                            ?>
+                        </table>
+                    </div>
                 </div>
             </div>
 

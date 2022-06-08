@@ -1,8 +1,9 @@
 <?php
 session_start();
-if (isset($_POST['logout'])) {
+if (isset($_GET['logout'])) {
     session_unset();
     session_destroy();
+    header('Location: index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +24,7 @@ if (isset($_POST['logout'])) {
 
 <body>
     <div class="wrapper">
-        <div class="control"></div>
+        <div class="control admin"></div>
         <?php
         if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
             echo ("<script>document.querySelector('.control').innerHTML='<a href=admin.php>ZARZĄDZAJ</a>';</script>");
@@ -106,7 +107,7 @@ if (isset($_POST['logout'])) {
             <?php
             if (isset($_SESSION['log'])) {
                 echo ("<script>
-                document.querySelector('header .login').innerHTML += '<img src=img/logout.png>';
+                document.querySelector('header .login').innerHTML += '<img class=logout onclick=logout() src=img/logout.png>';
             </script>");
             }
             ?>
@@ -182,37 +183,39 @@ if (isset($_POST['logout'])) {
                     </div>
                 </div>
             </div>
-            <div class="opinions">
-                <h2>Opinie</h2>
-                <p class="title">Opinie naszych klientów</p>
-                <div class="opinion">
-                    <img src="img/circle_arrow_left.png">
-                    <div class="inside">
-                        <?php
-                        @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
-                        $pyt1 = mysqli_query($db, "SELECT opinia,accounts.nazwa AS username FROM opinions JOIN accounts ON opinions.user=accounts.id;");
-                        while ($row = mysqli_fetch_assoc($pyt1)) {
-                            echo ("<div>
+            <?php
+            echo '<div class="opinions">';
+            echo '<h2>Opinie</h2>';
+            @$db = mysqli_connect("localhost", "root", "", "barber") or die("Błąd połączenia z bazą danych!");
+            if (mysqli_num_rows(mysqli_query($db, "SELECT * FROM opinions;")) > 0) {
+                echo '<p class="title">Opinie naszych klientów</p>';
+                echo ' <div class="opinion">';
+                echo ' <img src="img/circle_arrow_left.png">';
+                echo ' <div class="inside">';
+                $pyt1 = mysqli_query($db, "SELECT opinia,accounts.nazwa AS username FROM opinions JOIN accounts ON opinions.user=accounts.id;");
+                while ($row = mysqli_fetch_assoc($pyt1)) {
+                    echo ("<div>
                             <p class='nickname'>$row[username]</p>
                             <p class='contents'>$row[opinia]</p>
                             </div>");
-                        }
-                        ?>
-                    </div>
-                    <img src="img/circle_arrow_right.png">
-                </div>
-
-
-                <?php
-                if (isset($_SESSION["log"]) && $_SESSION["log"] == true) {
-                    if (!isset($_SESSION["admin"])) {
-                        echo ("<a href='add_opinion.php' class='visit'>Napisz opinię</a>");
-                    }
-                } else {
-                    echo ("<a onclick='scroll_apoint(`header`)' class='visit'>Napisz opinię</a>");
                 }
-                ?>
-            </div>
+
+                echo ' </div>';
+                echo ' <img src="img/circle_arrow_right.png">';
+                echo '</div>';
+            } else {
+                echo '<div></div>';
+            }
+
+            if (isset($_SESSION["log"]) && $_SESSION["log"] == true) {
+                if (!isset($_SESSION["admin"])) {
+                    echo ("<a href='add_opinion.php' class='visit'>Napisz opinię</a>");
+                }
+            } else {
+                echo ("<a onclick='scroll_apoint(`header`)' class='visit'>Napisz opinię</a>");
+            }
+            echo '</div>';
+            ?>
             <div class="appointment">
                 <div class="content" id="apoint_form">
                     <h2>Umów się na wizytę</h2>
