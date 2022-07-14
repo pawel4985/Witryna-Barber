@@ -30,7 +30,7 @@ if (!isset($_SESSION["log"]) || !isset($_SESSION["name"]) || !isset($_SESSION["u
             <a href="index.php"><img src="img/scissors.png" alt="logo-nożyczki" class="logo"></a>
             <div class="login">
                 <div class="appoints">
-                    <form class="logowanie" action="" method="post">
+                    <form class="logowanie opinia opinie" action="" method="post">
                         <?php
                         $user_id = $_SESSION['user_id'];
                         if (isset($_POST['add_opinion'])) {

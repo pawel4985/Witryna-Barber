@@ -2,21 +2,7 @@
     height: 100vh;
 }
 
-header .login form.logowanie {
-    transition: 1s;
-    padding: 20px;
-    padding-right: 10px;
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 30px;
-}
+
 
 header .login form.logowanie.usluga {
     position: static;
@@ -93,6 +79,9 @@ header .appoints {
     transform: translate(-50%, -50%);
     height: 400px;
     overflow-y: scroll;
+}
+header .login .appoints{
+    overflow-y: hidden;
 }
 
 div.table {

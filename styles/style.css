@@ -254,7 +254,15 @@ header .login form.logowanie input[type="submit"] {
     background-color: #F1C40F;
     color: black;
 }
-
+header .login form.logowanie.opinia{
+    top:50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+}
+header .login form.logowanie.opinia.opinie{
+    position: static;
+    transform: none;
+}
 header .login form.logowanie {
     transition: 1s;
     padding: 20px;
@@ -262,6 +270,7 @@ header .login form.logowanie {
     position: absolute;
     top: 15%;
     right: -100%;
+    z-index: 20;
     background-color: white;
     display: flex;
     align-items: center;
